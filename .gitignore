@@ -1,0 +1,11 @@
+.DS_Store
+.env
+/conseil
+/conseil.db
+/conseil.db-shm
+/conseil.db-wal
+/ios/.build/
+/ios/.swiftpm/
+/ios/DerivedData/
+*.xcuserstate
+xcuserdata/
