@@ -1,0 +1,16 @@
+{"type":"session","version":3,"id":"11111111-1111-4111-8111-111111111111","timestamp":"2026-08-30T00:00:00.000Z","cwd":"/work"}
+{"type":"agent_start"}
+{"type":"turn_start"}
+{"type":"message_start","message":{"role":"assistant","provider":"exe-dev-openai","model":"gpt-5.6-sol@llm","content":[],"stopReason":"stop","usage":{"input":0,"output":0,"cacheRead":0,"cacheWrite":0,"totalTokens":0,"reasoning":0},"timestamp":1788048000000}}
+{"type":"message_update","usage":{"input":10,"output":4,"cacheRead":0,"cacheWrite":0,"totalTokens":14,"reasoning":7},"assistantMessageEvent":{"type":"toolcall_start","contentIndex":0,"id":"call_1","toolName":"read"}}
+{"type":"message_end","message":{"role":"assistant","provider":"exe-dev-openai","model":"gpt-5.6-sol@llm","content":[{"type":"toolCall","id":"call_1","name":"read","arguments":{"path":"README.md"}}],"stopReason":"toolUse","usage":{"input":10,"output":4,"cacheRead":0,"cacheWrite":0,"totalTokens":14,"reasoning":7},"timestamp":1788048000000}}
+{"type":"tool_execution_start","toolCallId":"call_1","toolName":"read","args":{"path":"README.md"}}
+{"type":"tool_execution_end","toolCallId":"call_1","toolName":"read","result":{"content":[{"type":"text","text":"# Project"}],"details":{}},"isError":false}
+{"type":"turn_end","message":{"role":"assistant","provider":"exe-dev-openai","model":"gpt-5.6-sol@llm","content":[{"type":"toolCall","id":"call_1","name":"read","arguments":{"path":"README.md"}}],"stopReason":"toolUse","usage":{"input":10,"output":4,"cacheRead":0,"cacheWrite":0,"totalTokens":14,"reasoning":7},"timestamp":1788048000000},"toolResults":[{"role":"toolResult","toolCallId":"call_1","toolName":"read","content":[{"type":"text","text":"# Project"}],"isError":false,"timestamp":1788048001000}]}
+{"type":"turn_start"}
+{"type":"message_start","message":{"role":"assistant","provider":"exe-dev-openai","model":"gpt-5.6-sol@llm","content":[],"stopReason":"stop","usage":{"input":0,"output":0,"cacheRead":0,"cacheWrite":0,"totalTokens":0,"reasoning":0},"timestamp":1788048002000}}
+{"type":"message_update","usage":{"input":20,"output":3,"cacheRead":0,"cacheWrite":0,"totalTokens":23,"reasoning":9},"assistantMessageEvent":{"type":"text_delta","contentIndex":0,"delta":"done"}}
+{"type":"message_end","message":{"role":"assistant","provider":"exe-dev-openai","model":"gpt-5.6-sol@llm","content":[{"type":"text","text":"done"}],"stopReason":"stop","usage":{"input":20,"output":3,"cacheRead":0,"cacheWrite":0,"totalTokens":23,"reasoning":9},"timestamp":1788048002000}}
+{"type":"turn_end","message":{"role":"assistant","provider":"exe-dev-openai","model":"gpt-5.6-sol@llm","content":[{"type":"text","text":"done"}],"stopReason":"stop","usage":{"input":20,"output":3,"cacheRead":0,"cacheWrite":0,"totalTokens":23,"reasoning":9},"timestamp":1788048002000},"toolResults":[]}
+{"type":"agent_end","messages":[{"role":"assistant","provider":"exe-dev-openai","model":"gpt-5.6-sol@llm","content":[{"type":"text","text":"done"}],"stopReason":"stop","usage":{"input":20,"output":3,"cacheRead":0,"cacheWrite":0,"totalTokens":23,"reasoning":9},"timestamp":1788048002000}],"willRetry":false}
+{"type":"agent_settled"}
