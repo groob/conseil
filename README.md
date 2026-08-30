@@ -114,3 +114,31 @@ ssh exe.dev share set-private yolk-adze
 ```
 
 SQLite survives service and VM restarts. An encrypted off-VM backup is still required before treating the trace as irreplaceable data.
+
+## Vitrier token broker
+
+`cmd/vitrier-broker` maps each authenticated source VM to one repository and mints a short-lived GitHub installation token for that repository. It runs on a dedicated exe.dev VM. Workers reach it through the `vitrier` peer integration and never receive the GitHub App private key.
+
+Deploy from the trusted computer that holds the private key. Pass a VM and its maintenancewindows repository for end-to-end verification:
+
+```sh
+./deploy/vitrier-broker.sh VERIFY_VM REPOSITORY
+```
+
+The verification VM must already have the factory-created `VERIFY_VM -> REPOSITORY` grant. Deployment checks that exact grant before it replaces any active file. It never creates or revokes grants.
+
+The script deploys to `groob-tools`, reconciles the `vitrier` peer integration, and verifies access to `maintenancewindows/REPOSITORY` from the verification VM. It preserves integration state after a failed deployment because the exe.dev API cannot prove rollback ownership atomically. Broker files and service state still roll back.
+
+The private key defaults to `~/maintenance-windows/.secrets/vitrier-priv.pem`, and the GitHub App ID defaults to `4691351`. `VITRIER_PRIVATE_KEY_FILE` and `VITRIER_APP_ID` can override those values.
+
+The script prints its transaction ID before changing broker files. A later run removes retained committed state. For any other retained phase, it refuses to continue and prints the exact root-only recovery command.
+
+Root on the broker VM manages persistent grants without restarting the service:
+
+```sh
+sudo vitrier-broker grant VM REPOSITORY
+sudo vitrier-broker check VM REPOSITORY
+sudo vitrier-broker revoke VM
+```
+
+Keep the broker VM private and do not run an agent on it. The token endpoint derives the repository only from the exact `X-Exedev-Source-Vm` identity supplied by exe.dev. The only write permissions are `contents:write` and `pull_requests:write`. GitHub also includes its mandatory `metadata:read` permission.

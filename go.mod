@@ -2,7 +2,10 @@ module github.com/groob/conseil
 
 go 1.25.0
 
-require modernc.org/sqlite v1.57.0
+require (
+	github.com/peterbourgon/ff/v4 v4.0.0-beta.1
+	modernc.org/sqlite v1.57.0
+)
 
 require (
 	github.com/dustin/go-humanize v1.0.1 // indirect
